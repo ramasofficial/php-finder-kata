@@ -6,11 +6,11 @@ namespace CodelyTV\FinderKata\Algorithm;
 
 class PersonBirthdateDifferenceHandler
 {
-    public static function handle($tr, $option)
+    public static function handle($rows, $option)
     {
-        $firstRow = $tr[0];
+        $firstRow = $rows[0];
 
-        foreach ($tr as $currentRow) {
+        foreach ($rows as $currentRow) {
             $difference = static::doesFirstRowHigherThanSecond($currentRow->getDifference(), $firstRow->getDifference());
 
             switch ($option) {

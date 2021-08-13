@@ -16,8 +16,8 @@ final class PersonBirthdateFinder
 
     public function find(int $option): PersonResult
     {
-        /** @var PersonResult[] $tr */
-        $tr = [];
+        /** @var PersonResult[] $rows */
+        $rows = [];
 
         for ($i = 0; $i < $this->countPersons(); $i++) {
             for ($j = $i + 1; $j < $this->countPersons(); $j++) {
@@ -34,15 +34,15 @@ final class PersonBirthdateFinder
                 $difference = $this->getTimeDifferenceBetweenTwoPersons($personResult);
                 $personResult->setDifference($difference);
 
-                $tr[] = $personResult;
+                $rows[] = $personResult;
             }
         }
 
-        if ($this->isEmpty($tr)) {
+        if ($this->isEmpty($rows)) {
             return new PersonResult();
         }
 
-        $answer = PersonBirthdateDifferenceHandler::handle($tr, $option);
+        $answer = PersonBirthdateDifferenceHandler::handle($rows, $option);
 
         return $answer;
     }
