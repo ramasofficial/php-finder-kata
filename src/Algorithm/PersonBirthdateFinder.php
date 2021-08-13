@@ -42,9 +42,9 @@ final class PersonBirthdateFinder
             return new PersonResult();
         }
 
-        $answer = PersonBirthdateDifferenceHandler::handle($rows, $option);
+        $result = PersonBirthdateDifferenceHandler::handle($rows, $option);
 
-        return $answer;
+        return $result;
     }
 
     private function isEmpty(array $array): bool
