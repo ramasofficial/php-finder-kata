@@ -12,9 +12,11 @@ final class PersonResult
 
     private int $difference;
 
-    public function setFirstPerson(Person $firstPerson): void
+    public function setFirstPerson(Person $firstPerson): self
     {
         $this->firstPerson = $firstPerson;
+
+        return $this;
     }
 
     public function getFirstPerson(): ?Person
@@ -22,9 +24,11 @@ final class PersonResult
         return $this->firstPerson;
     }
 
-    public function setSecondPerson(Person $secondPerson): void
+    public function setSecondPerson(Person $secondPerson): self
     {
         $this->secondPerson = $secondPerson;
+
+        return $this;
     }
 
     public function getSecondPerson(): ?Person

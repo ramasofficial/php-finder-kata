@@ -10,17 +10,17 @@ class PersonBirthdateHandler
     {
         /** @var PersonResult[] $rows */
         $rows = [];
+        $personsList = $persons;
 
         foreach ($persons as $key => $person) {
-            for ($nextPerson = ++$key; $nextPerson < static::countPersons($persons); $nextPerson++) {
+            unset($personsList[$key]);
+            foreach ($personsList as $nextPerson) {
                 $personResult = new PersonResult();
 
-                if ($person->getBirthdate() < $persons[$nextPerson]->getBirthdate()) {
-                    $personResult->setFirstPerson($person);
-                    $personResult->setSecondPerson($persons[$nextPerson]);
+                if ($person->getBirthdate() < $nextPerson->getBirthdate()) {
+                    $personResult->setFirstPerson($person)->setSecondPerson($nextPerson);
                 } else {
-                    $personResult->setFirstPerson($persons[$nextPerson]);
-                    $personResult->setSecondPerson($person);
+                    $personResult->setFirstPerson($nextPerson)->setSecondPerson($person);
                 }
 
                 $personResult->setDifference(static::getTimeDifferenceBetweenTwoPersons($personResult));
@@ -30,11 +30,6 @@ class PersonBirthdateHandler
         }
 
         return $rows;
-    }
-
-    private static function countPersons(array $persons): int
-    {
-        return count($persons);
     }
 
     private static function getTimeDifferenceBetweenTwoPersons(PersonResult $personResult): int

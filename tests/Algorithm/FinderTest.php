@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace CodelyTV\FinderKataTest\Algorithm;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 use CodelyTV\FinderKata\Algorithm\Person;
 use CodelyTV\FinderKata\Algorithm\PersonBirthdateFinder;
@@ -12,34 +13,34 @@ use CodelyTV\FinderKata\Algorithm\PersonBirthdateFinderConfig;
 final class FinderTest extends TestCase
 {
     /** @var Person */
-    private $sue;
+    private Person $sue;
 
     /** @var Person */
-    private $greg;
+    private Person $greg;
 
     /** @var Person */
-    private $sarah;
+    private Person $sarah;
 
     /** @var Person */
-    private $mike;
+    private Person $mike;
 
     protected function setUp()
     {
         $this->sue = new Person();
         $this->sue->setName('Sue');
-        $this->sue->setBirthDate(new \DateTime("1950-01-01"));
+        $this->sue->setBirthDate(new DateTime("1950-01-01"));
 
         $this->greg = new Person();
         $this->greg->setName('Greg');
-        $this->greg->setBirthDate(new \DateTime("1952-05-01"));
+        $this->greg->setBirthDate(new DateTime("1952-05-01"));
 
         $this->sarah = new Person();
         $this->sarah->setName('Sarah');
-        $this->sarah->setBirthDate(new \DateTime("1982-01-01"));
+        $this->sarah->setBirthDate(new DateTime("1982-01-01"));
 
         $this->mike = new Person();
         $this->mike->setName('Mike');
-        $this->mike->setBirthDate(new \DateTime("1979-01-01"));
+        $this->mike->setBirthDate(new DateTime("1979-01-01"));
     }
 
     /** @test */
