@@ -38,28 +38,18 @@ final class PersonBirthdateFinder
             }
         }
 
-        if (count($tr) < 1) {
+        if ($this->isEmpty($tr)) {
             return new PersonResult();
         }
 
-        $answer = $tr[0];
-
-        foreach ($tr as $result) {
-            switch ($option) {
-                case PersonBirthdateFinderConfig::CLOSEST:
-                    if ($result->getDifference() < $answer->getDifference()) {
-                        $answer = $result;
-                    }
-                    break;
-                case PersonBirthdateFinderConfig::FURTHEST:
-                    if ($result->getDifference() > $answer->getDifference()) {
-                        $answer = $result;
-                    }
-                    break;
-            }
-        }
+        $answer = PersonBirthdateDifferenceHandler::handle($tr, $option);
 
         return $answer;
+    }
+
+    private function isEmpty(array $array): bool
+    {
+        return empty($array);
     }
 
     private function countPersons()
