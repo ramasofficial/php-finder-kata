@@ -11,20 +11,19 @@ class PersonBirthdateHandler
         /** @var PersonResult[] $rows */
         $rows = [];
 
-        for ($i = 0; $i < static::countPersons($persons); $i++) {
-            for ($j = $i + 1; $j < static::countPersons($persons); $j++) {
+        foreach ($persons as $key => $person) {
+            for ($nextPerson = ++$key; $nextPerson < static::countPersons($persons); $nextPerson++) {
                 $personResult = new PersonResult();
 
-                if ($persons[$i]->getBirthdate() < $persons[$j]->getBirthdate()) {
-                    $personResult->setFirstPerson($persons[$i]);
-                    $personResult->setSecondPerson($persons[$j]);
+                if ($person->getBirthdate() < $persons[$nextPerson]->getBirthdate()) {
+                    $personResult->setFirstPerson($person);
+                    $personResult->setSecondPerson($persons[$nextPerson]);
                 } else {
-                    $personResult->setFirstPerson($persons[$j]);
-                    $personResult->setSecondPerson($persons[$i]);
+                    $personResult->setFirstPerson($persons[$nextPerson]);
+                    $personResult->setSecondPerson($person);
                 }
 
-                $difference = static::getTimeDifferenceBetweenTwoPersons($personResult);
-                $personResult->setDifference($difference);
+                $personResult->setDifference(static::getTimeDifferenceBetweenTwoPersons($personResult));
 
                 $rows[] = $personResult;
             }
