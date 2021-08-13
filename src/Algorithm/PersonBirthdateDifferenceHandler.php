@@ -11,7 +11,6 @@ class PersonBirthdateDifferenceHandler
         $firstRow = $tr[0];
 
         foreach ($tr as $currentRow) {
-
             $difference = static::doesFirstRowHigherThanSecond($currentRow->getDifference(), $firstRow->getDifference());
 
             switch ($option) {
@@ -26,7 +25,6 @@ class PersonBirthdateDifferenceHandler
                     }
                     break;
             }
-            
         }
 
         return $firstRow;
