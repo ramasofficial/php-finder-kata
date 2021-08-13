@@ -6,7 +6,7 @@ namespace CodelyTV\FinderKata\Algorithm;
 
 class PersonBirthdateDifferenceHandler
 {
-    public static function handle($rows, $option)
+    public static function handle(array $rows, int $option): PersonResult
     {
         $firstRow = $rows[0];
 

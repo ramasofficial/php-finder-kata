@@ -10,34 +10,34 @@ final class PersonResult
 
     private $secondPerson;
 
-    private $difference;
+    private int $difference;
 
-    public function setFirstPerson(Person $firstPerson)
+    public function setFirstPerson(Person $firstPerson): void
     {
         $this->firstPerson = $firstPerson;
     }
 
-    public function getFirstPerson()
+    public function getFirstPerson(): ?Person
     {
         return $this->firstPerson;
     }
 
-    public function setSecondPerson(Person $secondPerson)
+    public function setSecondPerson(Person $secondPerson): void
     {
         $this->secondPerson = $secondPerson;
     }
 
-    public function getSecondPerson()
+    public function getSecondPerson(): ?Person
     {
         return $this->secondPerson;
     }
 
-    public function setDifference(int $difference)
+    public function setDifference(int $difference): void
     {
         $this->difference = $difference;
     }
 
-    public function getDifference()
+    public function getDifference(): int
     {
         return $this->difference;
     }

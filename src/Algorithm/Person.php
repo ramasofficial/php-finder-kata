@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace CodelyTV\FinderKata\Algorithm;
 
@@ -8,18 +8,16 @@ use DateTime;
 
 final class Person
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var DateTime */
-    private $birthDate;
+    private DateTime $birthDate;
 
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -29,7 +27,7 @@ final class Person
         return $this->birthDate;
     }
 
-    public function setBirthDate(DateTime $birthDate)
+    public function setBirthDate(DateTime $birthDate): void
     {
         $this->birthDate = $birthDate;
     }

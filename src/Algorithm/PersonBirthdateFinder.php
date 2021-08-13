@@ -7,7 +7,7 @@ namespace CodelyTV\FinderKata\Algorithm;
 final class PersonBirthdateFinder
 {
     /** @var Person[] */
-    private $persons;
+    private array $persons;
 
     public function __construct(array $persons)
     {
@@ -16,49 +16,17 @@ final class PersonBirthdateFinder
 
     public function find(int $option): PersonResult
     {
-        /** @var PersonResult[] $rows */
-        $rows = [];
-
-        for ($i = 0; $i < $this->countPersons(); $i++) {
-            for ($j = $i + 1; $j < $this->countPersons(); $j++) {
-                $personResult = new PersonResult();
-
-                if ($this->persons[$i]->getBirthdate() < $this->persons[$j]->getBirthdate()) {
-                    $personResult->setFirstPerson($this->persons[$i]);
-                    $personResult->setSecondPerson($this->persons[$j]);
-                } else {
-                    $personResult->setFirstPerson($this->persons[$j]);
-                    $personResult->setSecondPerson($this->persons[$i]);
-                }
-
-                $difference = $this->getTimeDifferenceBetweenTwoPersons($personResult);
-                $personResult->setDifference($difference);
-
-                $rows[] = $personResult;
-            }
-        }
+        $rows = PersonBirthdateHandler::handle($this->persons);
 
         if ($this->isEmpty($rows)) {
             return new PersonResult();
         }
 
-        $result = PersonBirthdateDifferenceHandler::handle($rows, $option);
-
-        return $result;
+        return PersonBirthdateDifferenceHandler::handle($rows, $option);
     }
 
     private function isEmpty(array $array): bool
     {
         return empty($array);
-    }
-
-    private function countPersons()
-    {
-        return count($this->persons);
-    }
-
-    private function getTimeDifferenceBetweenTwoPersons(PersonResult $personResult)
-    {
-        return $personResult->getSecondPerson()->getBirthdate()->getTimestamp() - $personResult->getFirstPerson()->getBirthdate()->getTimestamp();
     }
 }
